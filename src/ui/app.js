@@ -1,9 +1,9 @@
 "use strict";
+const { ipcRenderer } = require("electron");
+
 const taskForm = document.querySelector("#taskForm");
 const taskName = document.querySelector("#taskName");
 const taskDescription = document.querySelector("#taskDescription");
-
-const { ipcRenderer } = require("electron");
 
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
