@@ -4,10 +4,22 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "dependencies": {
-    "electron": "^22.0.0",
     "mongoose": "^6.8.3"
+  },
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-builder": "^23.6.0",
+    "electron-reloader": "^1.2.3"
+  },
+  "build": {
+    "productName": "Tasks",
+    "appId": "com.lopscorp.tasks",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    }
   }
 }
