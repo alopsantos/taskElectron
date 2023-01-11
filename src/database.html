@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./ui/styles.css">
+  <title>Database</title>
+</head>
+
+<body>
+  <main>
+    <a href="./index.html">Tarefas</a>
+    <div class="formulario">
+      <div>
+        <form action="" id="databaseForm">
+          <h1>Database Url</h1>
+          <input type="text" name="" id="databaseUrl" autofocus required>
+
+          <div>
+            <button type="submit" class="primary">Salvar</button>
+            <!-- <button type="submit" class="secundary">Fechar</button> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const Store = require("electron-store");
+    const inputDatabaseUrl = document.querySelector("#databaseUrl")
+    const formDatabase = document.querySelector("#databaseForm");
+    // inputDatabaseUrl.value = store
+
+    const schema = {
+      database: {
+        type: "string"
+      }
+    }
+
+    const store = new Store({ schema });
+
+    formDatabase.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputUrl = inputDatabaseUrl.value;
+      criarDatabase(inputUrl)
+      formDatabase.reset();
+    })
+
+    function criarDatabase(url) {
+      store.set(
+        "database",
+        JSON.stringify([
+          {
+            url: url
+          },
+        ])
+      );
+      console.log(url)
+    }
+  </script>
+
+  <!-- <script src="./ui/appDatabase.js"></script> -->
+</body>
+
+</html>

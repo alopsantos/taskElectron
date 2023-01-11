@@ -1,14 +1,20 @@
+const Store = require("electron-store");
 const mongoose = require("mongoose");
 
-mongoose.set("strictQuery", false);
+const store = new Store();
 
-mongoose
-  .connect(
-    "mongodb+srv://plantaostiadmin:bZTqvHoasw5WndlI@lopscorp.hsvvq.mongodb.net/test?retryWrites=true",
-    {
+const url = store.get("database");
+
+if (!url) {
+  console.log("url");
+} else {
+  mongoose.set("strictQuery", false);
+
+  mongoose
+    .connect(url.split('"')[3], {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    }
-  )
-  .then((db) => console.log("db is conected"))
-  .catch((err) => console.log(err));
+    })
+    .then((db) => console.log("db is conected"))
+    .catch((err) => console.log(err));
+}
