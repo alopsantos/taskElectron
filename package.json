@@ -1,11 +1,13 @@
 {
-  "name": "tasks",
+  "name": "andertasks",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "mongoose": "^6.8.3"
@@ -16,10 +18,17 @@
     "electron-reloader": "^1.2.3"
   },
   "build": {
-    "productName": "Tasks",
+    "productName": "Ander Tasks",
     "appId": "com.lopscorp.tasks",
     "mac": {
       "category": "public.app-category.developer-tools"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": false,
+      "oneClick": false,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "Ander Tasks Uninstall"
     }
   }
 }

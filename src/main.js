@@ -1,4 +1,5 @@
 const { BrowserWindow, ipcMain } = require("electron");
+const path = require("path");
 const Task = require("./modules/Task");
 
 function createWindow() {
@@ -9,6 +10,7 @@ function createWindow() {
     height: 750,
     maxHeight: 750,
     minHeight: 750,
+    icon: path.join(__dirname, "assets", "icon.png"),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
