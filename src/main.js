@@ -3,8 +3,12 @@ const Task = require("./modules/Task");
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 700,
+    width: 650,
+    maxWidth: 650,
+    minWidth: 650,
+    height: 750,
+    maxHeight: 750,
+    minHeight: 750,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -18,6 +22,7 @@ function createWindow() {
 ipcMain.on("new-task", async (e, arg) => {
   const newTask = new Task(arg);
   const taskSaved = await newTask.save();
+  console.log(taskSaved);
   e.reply("new-task-created", JSON.stringify(taskSaved));
 });
 

@@ -1,4 +1,3 @@
-"use strict";
 const { ipcRenderer } = require("electron");
 
 const taskForm = document.querySelector("#taskForm");
@@ -34,14 +33,16 @@ function renderTasks(tasks) {
   tasks.map((task) => {
     taskList.innerHTML += `
     <li class="card">
-    <h4>Task id: ${task._id}</h4>
+    <div>
+      <h4>${task.name}</h4>
+      <span>${task._id}</span>
+      <p>${task.description}
+    </div>
     
-    <p>Task Name: ${task.name}</p>
-    
-    <p>Task Description: ${task.description}
-    
-    <button class="btn btn-danger" onclick="deleteTask('${task._id}')">🗑 Delete</button>
-    <button class="btn btn-secondary" onclick="editTask('${task._id}')">✎ Edit</button>
+    <div>
+      <button class="btn danger" onclick="deleteTask('${task._id}')">🗑</button>
+      <button class="btn secundary" onclick="editTask('${task._id}')">✏️</button>
+    </div>
     </li>
     `;
   });
@@ -66,12 +67,10 @@ taskForm.addEventListener("submit", (e) => {
 });
 
 ipcRenderer.on("new-task-created", (e, arg) => {
-  console.log(arg);
   const taskSaved = JSON.parse(arg);
-  console.log(taskSaved);
   tasks.push(taskSaved);
-  console.log(tasks);
   renderTasks(tasks);
+
   alert("Tarefa criada com sucesso");
 
   taskName.focus();
